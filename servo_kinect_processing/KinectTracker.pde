@@ -5,7 +5,7 @@ class KinectTracker {
   // Size of kinect image
   int kw = 640;
   int kh = 480;
-  int threshold = 1020;
+  int threshold = 1010;
 
   // Raw location
   PVector loc;
