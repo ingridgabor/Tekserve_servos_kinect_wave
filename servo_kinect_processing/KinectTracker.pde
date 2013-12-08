@@ -5,7 +5,7 @@ class KinectTracker {
   // Size of kinect image
   int kw = 640;
   int kh = 480;
-  int threshold = 1010;
+  int threshold = 1010; // change depth threshold here
 
   // Raw location
   PVector loc;
@@ -48,7 +48,8 @@ class KinectTracker {
     for(int x = 0; x < kw; x++) {
       for(int y = 0; y < kh; y++) {
         // Mirroring the image
-        int offset = kw-x-1+y*kw;
+        int offset = x + y *kw;
+        // int offset = kw-x-1+y*kw;
         // Grabbing the raw depth
         int rawDepth = depth[offset];
 
@@ -90,7 +91,8 @@ class KinectTracker {
     for(int x = 0; x < kw; x++) {
       for(int y = 0; y < kh; y++) {
         // mirroring image
-        int offset = kw-x-1+y*kw;
+        int offset = x + y *kw;
+        //int offset = kw-x-1+y*kw;
         // Raw depth
         int rawDepth = depth[offset];
 

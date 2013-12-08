@@ -9,6 +9,8 @@ RXTX error message? try typing the following in your command line interface: 'su
 Also, check again that the following file permissions are 'Read & Write' (777): 'var/lock', 'var/spool/uucp'.
 Middle servo was overheating and buffer code didn't work. changed code 'int angle = (int)v3.x/7' to '7' to buffer motion of servos. 640/7 = 91 degrees of motion (out of 120 total).
 Middle servo gets the most tension. must decrease range of motion by dividing by 2.
+Flip to mirror image. in KiectTracker class, change to: int offset = x + y *kw;
+To change depth threshold, in KinectTracker class, alter 'int threshold = 1010;'
 */
 
 import processing.serial.*;
@@ -92,19 +94,19 @@ void draw() {
 
 // servo 9 (2nd from top left, from behind).-----------------------------------
       for (int servoNumber = 9; servoNumber < 10; servoNumber++) {       
-      myPort.write("s" + servoNumber + "," + ((120-angle)-20) + "\n");  // if middle servo is (angle), 9 is (120-angle) to do opposite motion.  
+      myPort.write("s" + servoNumber + "," + ((120-angle)) + "\n");  // if middle servo is (angle), 9 is (120-angle) to do opposite motion.  
       }
 // ----------------------------------------------------------------------------
 
 // servo 10 (bottom left, from behind).----------------------------------------
       for (int servoNumber = 10; servoNumber < 11; servoNumber++) {        
-      myPort.write("s" + servoNumber + "," + (angle+10) + "\n");  // if middle servo is (angle), 10 is (angle) to do opposite motion. 
+      myPort.write("s" + servoNumber + "," + (angle) + "\n");  // if middle servo is (angle), 10 is (angle) to do opposite motion. 
       }
 // ----------------------------------------------------------------------------
 
 // servo 11 (middle).----------------------------------------------------------
     for (int servoNumber = 11; servoNumber < 12; servoNumber++) {   
-      myPort.write("s" + servoNumber + "," + (angle/2) + "\n"); // middle servo gets the most tension. must decrease range of motion by dividing by 2.
+      myPort.write("s" + servoNumber + "," + 50 + "\n"); // middle servo gets the most tension. must decrease range of motion by dividing by 2.
     } 
 // ----------------------------------------------------------------------------
 
